@@ -1,0 +1,58 @@
+1.- How did viewing a diff between two versions of a file help you see the bug that
+was introduced?
+
+It's easier to spot the mistakes because it only shows you the lines that are
+different between the working file and the one with a bug.
+
+2.- How could having easy access to the entire history of a file make you a more
+efficient programmer in the long term?
+
+By allowing me to recover certain old aspects of a project, or by
+allowing a fast recovery from an old non-project-breaking bug that was
+installed a long time ago.
+
+3.- What do you think are the pros and cons of manually choosing when to create a
+commit, like you do in Git, vs having versions automatically saved, like Google
+Docs does?
+
+Pros: one commit per logical change
+Cons: might forget to commit when necessary and end up with big differences
+between versions
+
+4.- Why do you think some version control systems, like Git, allow saving
+multiple files in one commit, while others, like Google Docs, treat each file
+separately?
+
+Because it allows tracking of multiple files that are likely to be related,
+as is common in programming in general (web design, modules and libraries, etc.)
+
+5.- How can you use the commands git log and git diff to view the history of
+files?
+
+git log: shows all the commits done in the repository, with their ids and
+time and message logged into them. If you add the --stat, you also get
+which files where modified and how much (insertions and deletions)
+
+git diff: shows the actual differences between to versions, for all files
+that differ between the two commits.
+
+6.- How might using version control make you more confident to make changes that
+could break something?
+
+You can go ahead and mess with previously working code, knowing that you'll be
+able to get it back working if you mess something up, by using git.
+
+7.- Now that you have your workspace set up, what do you want to try using Git for?
+
+Everything
+
+
+Materia:
+git log
+git log --stat: shows which files where affected in that commit.
+git clone
+git commit
+git diff id1 id2
+git config --global color.ui auto
+git checkout: resetting all the files to the time the commit was made. It's
+useful to see which commit introduced the bug.
