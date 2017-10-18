@@ -34,10 +34,21 @@ Merging two branches together creates a new commit in one of those branches
 (usually the master branch) that now has all the commits from both branches.
 We represent it like that because that's what it actually looks like.
 
+7.- What are the pros and cons of Git’s automatic merging vs. always
+doing merges manually?
+
+Pros for automatic: it saves time and it works some times.
+Cons for automatic: it doesn't always work and makes you check for things that
+might be trivial
+Pros for manual: it's perfect.
+Cons for manual: it's time consuming. 
+
+
+
 
 _____________________
 
-Materia:
+Summary:
 git init: initializes a new repository.
 git status: it shows which files have changed since the last commit.
 git add: adds files to the staging area.
@@ -86,6 +97,8 @@ git branch -d name: where name is the name of the branch we want to delete.
 This won't delete the commits in the branch, it'll only delete the label.
 This would've made those commmits hard to find, but now they're reachable from
 the master branch.
+
+git log -n1 : shows only the last commit's log.
 
 ====
 A note about git merge:
