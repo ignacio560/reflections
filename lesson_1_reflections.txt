@@ -44,10 +44,11 @@ able to get it back working if you mess something up, by using git.
 
 7.- Now that you have your workspace set up, what do you want to try using Git for?
 
-Everything
+Every new project I work in!
 
+___________
+Summary:
 
-Materia:
 git log
 git log --stat: shows which files where affected in that commit.
 git clone
