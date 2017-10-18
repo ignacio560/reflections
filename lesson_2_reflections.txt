@@ -41,7 +41,7 @@ Pros for automatic: it saves time and it works some times.
 Cons for automatic: it doesn't always work and makes you check for things that
 might be trivial
 Pros for manual: it's perfect.
-Cons for manual: it's time consuming. 
+Cons for manual: it's time consuming.
 
 
 
@@ -95,7 +95,7 @@ parent's ID was.
 To delete the branch that's no longer in use, we use:
 git branch -d name: where name is the name of the branch we want to delete.
 This won't delete the commits in the branch, it'll only delete the label.
-This would've made those commmits hard to find, but now they're reachable from
+This would've made those commits hard to find, but now they're reachable from
 the master branch.
 
 git log -n1 : shows only the last commit's log.
