@@ -19,10 +19,13 @@ to only one logical change. It could be two files it they're completely related.
 history organized? How would branches help?
 
 When I want to try new features but don't alter the main code and risk breaking
-it. 
+it.
 
+5.- How do the diagrams help you visualize the branch structure?
 
-
+As projects become larger, with experimental features, and collaborations
+with other people start to occur, diagrams helps visualizing where branches
+are, and if there's any commit that's unreachable. 
 
 Materia:
 git init: initializes a new repository.
@@ -46,3 +49,14 @@ Working directory, staging area, repository.
 Master is the name given to the main branch in most git repositories.
 The current last commit on a branch is the TIP of the branch.
 Merging is when you join two branch.
+
+A remote branch means that we didn't create it. Once we check it out, it
+behaves just like ours.
+
+git log --graph --oneline branch1 branch2: it shows linearly the relation
+between the branches.
+
+Reachability: the concept is complex but we understand it. The thing is,
+the command git checkout -b new_branch_name is the same as doing two commands
+simultaneously: git branch new_branch_name and git checkout new_branch_name.
+It's useful to create commits while going back or just to create new branches.
