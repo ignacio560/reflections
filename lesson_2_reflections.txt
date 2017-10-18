@@ -25,7 +25,17 @@ it.
 
 As projects become larger, with experimental features, and collaborations
 with other people start to occur, diagrams helps visualizing where branches
-are, and if there's any commit that's unreachable. 
+are, and if there's any commit that's unreachable.
+
+6.- What is the result of merging two branches together?
+Why do we represent it in the diagram the way we do?
+
+Merging two branches together creates a new commit in one of those branches
+(usually the master branch) that now has all the commits from both branches.
+We represent it like that because that's what it actually looks like.
+
+
+_____________________
 
 Materia:
 git init: initializes a new repository.
@@ -60,3 +70,45 @@ Reachability: the concept is complex but we understand it. The thing is,
 the command git checkout -b new_branch_name is the same as doing two commands
 simultaneously: git branch new_branch_name and git checkout new_branch_name.
 It's useful to create commits while going back or just to create new branches.
+
+git merge master name: it merges the master with the name branch.
+
+Now when we run git log, the commits are interleaved, and now using git diff
+might give very huge differences between non-parent-related commits.
+In order to find out what are the parents of each commits, we use a new command:
+
+git show COMMIT-ID-IM-INTERESTED-IN-SEEING: it will show me the differences
+between the ID I entered and it's parent, without actually knowing what the
+parent's ID was.
+
+To delete the branch that's no longer in use, we use:
+git branch -d name: where name is the name of the branch we want to delete.
+This won't delete the commits in the branch, it'll only delete the label.
+This would've made those commmits hard to find, but now they're reachable from
+the master branch.
+
+====
+A note about git merge:
+git merge will also include the currently checked-out branch in the merged
+version. So if you have branch1 checked out, and you run
+git merge branch2 branch3, the merged version will combine branch1 as well
+as branch2 and branch3. That’s because the branch1 label will update after
+you make the merge commit, so it’s unlikely that you didn’t want the changes
+from branch1 included in the merge. For this reason, you should always checkout
+one of the two branches you’re planning on merging before doing the merge.
+Which one you should check out depends on which branch label you want to
+point to the new commit.
+
+Since the checked-out branch is always included in the merge, you may have
+guessed that when you are merging two branches, you don't need to specify
+both of them as arguments to git merge on the command line. If you want
+to merge branch2 into branch1, you can simply git checkout branch1 and
+then type git merge branch2. The only reason to type
+git merge branch1 branch2 is if it helps you keep better mental track
+of which branches you are merging.
+
+Also, since the two branches are merged, the order in which they are
+typed into the command line does not matter. The key is to remember
+that git merge always merges all the specified branches into the
+currently checked out branch, creating a new commit for that branch.
+====
