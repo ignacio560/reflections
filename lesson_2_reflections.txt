@@ -9,6 +9,13 @@ and the repository? What value do you think it offers?
 It's an intermediate step between the two, allowing you to make sure how
 many files you want to commit before doing so.
 
+3.- How can you use the staging area to make sure you have one commit per
+logical change?
+
+By using diff and making sure I only commit one file at a time, if it relates
+to only one logical change. It could be two files it they're completely related.
+
+
 
 
 
@@ -19,5 +26,11 @@ git status: it shows which files have changed since the last commit.
 git add: adds files to the staging area.
 git commit
 git commit -m "Commit message"
+git diff with no arguments shows changes made from the WD to the staging area.
+git diff --staged: shows changes from staging area to last commit in repository.
+
+git reset --hard: discards any changes in the WD or SA: but be very careful,
+this is non-restorable.
+
 
 Etapas: working directory, staging area, repository.
