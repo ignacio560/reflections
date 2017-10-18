@@ -15,7 +15,11 @@ logical change?
 By using diff and making sure I only commit one file at a time, if it relates
 to only one logical change. It could be two files it they're completely related.
 
+4.- What are some situations when branches would be helpful in keeping your
+history organized? How would branches help?
 
+When I want to try new features but don't alter the main code and risk breaking
+it. 
 
 
 
@@ -32,5 +36,13 @@ git diff --staged: shows changes from staging area to last commit in repository.
 git reset --hard: discards any changes in the WD or SA: but be very careful,
 this is non-restorable.
 
+git branch: shows the current branches
+git branch name: creates a new branch with that name.
 
-Etapas: working directory, staging area, repository.
+To switch branches, use git checkout name
+
+Working directory, staging area, repository.
+
+Master is the name given to the main branch in most git repositories.
+The current last commit on a branch is the TIP of the branch.
+Merging is when you join two branch.
