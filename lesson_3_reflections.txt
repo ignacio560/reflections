@@ -31,27 +31,46 @@ you fork a repository that you want to modify but that you don't have permission
 or don't want to alter the original, so that later you can clone it to your
 local machine. and pull and push from it and the fork you created.
 
+4.- What is the benefit of having a copy of the last known state of the remote
+stored locally?
+
+It allows us to go offline, make changes, and then see how far we've gone from
+the last known state. Then we can fetch and see what changes were made by others
+while we where offline, without having to alter the code we've been developing
+on that time.
+
+
 
 _____________________
 
 Summary:
 git remote: shows all the remotes in the repository. Empty if none.
+** remote is usually named origin.
 
 git remote add name url: Add 'adds' this repository on GitHub as a remote,
 name is the name which we'll use to refer to the repository from GitHub.
 If there's only one, it's standard to call it 'origin'. Url is where I'll
-link it.
+link it. ** remote is usually named origin.
 
 git remote -v: verbose. The output now will show the url to which we push and
-fetch data from.
+fetch data from. ** remote is usually named origin.
 
 git push remote local_branch_to_push: it pushes the commits from the remote
 to GitHub. It takes two arguments: the name of the remote I want to send
 changes to and the branch I'd like to push. On GitHub, the branch will also
-be called "local_branch_to_push"
+be called "local_branch_to_push"  ** remote is usually named origin.
 
 git pull remote branch_to_pull: allows for local updates from the remote GitHub
-repository.
+repository.  ** remote is usually named origin.
+
+git fetch remote: updates the local copy of the remote master branch (origin/master)
+and leaves the local master alone. This is useful in cases where there are
+potentially conflicting changes.  ** remote is usually named origin.
+
+git log origin/master: shows the log of the local copy of the GitHub's master
+branch.
+
+git diff origin/master master
 
 Forking is a solution to cloning someone else's repository directly on GitHub,
 without having to clone their repository to your local machine, then setting
@@ -70,3 +89,77 @@ creates a remote for you. You can check that using git remote -v, and it's
 usually called origin.
 
 In settings on GitHub, you can add collaborators so that they can pull.
+
+Conflicts between local and remote repositories can occur if you work on
+GitHub and your local machine, or more commonly, if you have collaboration
+between two or more people. In order for conflicts to arise, you'll have to
+have changes made by two people, one locally and one remotely.
+
+If you do a local change and commit it, when you ran git status, you'll get a
+warning that 'your' branch is ahead of origin/master by 1 commit, and suggest
+that you push it. Meanwhile, someone else changed the same file on GitHub, and
+now the commit histories are different on your machine and on the remote repo.
+
+This requires the merge of the local and remote branches. It turns out that Git
+stores a local copies of the remote branches as of the last time we pulled or
+pushed the branch. This branch is called origin/master, and you also have a
+master branch, which is where you'll start committing new changes.
+
+So when you commit something new to master, neither the origin/master nor the
+master on GitHub will be updated, and we haven't communicated that we wanted
+to do that. If we push the new commit, then both the origin/master and the
+master at GitHub will get updated with the new commit. Similarly, if the branch
+got updated at GitHub and then we pulled, both master and origin/master would
+get updated with the new commit.
+
+But now we have different changes on each repositories, one remote and one
+local. It turns out you can update just the local copy of the remote branch,
+(that is, origin/master), and leaving your actual local version (master) alone.
+This is done using git fetch, which is very useful when there are potentially
+conflicting changes. If you're going to get offline for a while, you can
+update the local copy of the remote branch before you leave, and know how to
+access any updates made to the remote since you last sync-ed up, without
+having to combine them right away.
+
+Now that we have the commit from GitHub on our origin/master in the local
+repository, it's possible to incorporate them into the master branch using
+git merge. This is exactly what happens when we do a git pull: first the
+remote branch gets fetched, updating the local copy of the remote branch
+(origin/master), then that branch gets merged into the local one.
+
+As a sum up, git fetch updates origin/master with the contents of GitHub master
+branch, and then origin/master is merged into master.
+
+So:
+git pull origin master
+is the same as:
+git fetch origin
+git merge master origin/master
+
+It's interesting to know that after fetching, if there's a conflicting
+situation, we'll get a "diverged" warning, meaning that there are different
+commits on both the local branch (master) and remote's local copy branch
+(origin/master).
+
+Now, to merge them, first make sure you have the master branch checked out,
+and then run the git merge master origin/master command. We'll get a conflict,
+as expected, but we can open the file and resolve it.
+
+Once resolved in the file, use git add file, and then commit.
+As usually, when you commit this change, the text editor will suggest the merge
+as the commit message, this time telling us that we merged remote-tracking
+branch with origin/master.
+
+Since we know that git pull origin master is the same as doing the two step
+version of git fetch origin and git merge master origin/master (while having
+master checked out), we could've done that and the same would've happened.
+
+If we run this now, we'll see that master is already up to date.
+
+If git pull is the same as fetching and merging, why haven't we got merging
+comments on previous commits? The answer is fast-forward merges: it happens
+when we merge to commits when one is the ancestor of the other. That means that
+they are reachable by each others. If there's no reason to add new commits, we
+just update the label. This is a fast-forward merge: we're taking the label
+from the history of a branch, somewhere in it's ancestry, and moving it forward
+to the tip of the branch.
