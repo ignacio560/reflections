@@ -1,0 +1,23 @@
+1.- When would you want to use a remote repository rather than keeping all your work local?
+
+It offers cloud advantages, allowing you to work on any project from any computer. 
+It also allows other people to collaborate on the project, and if pushed to the
+remote repository, everyone working in the project can update their local files. 
+
+_____________________
+
+Summary:
+git remote: shows all the remotes in the repository. Empty if none.
+
+git remote add name url: Add 'adds' this repository on GitHub as a remote,
+name is the name which we'll use to refer to the repository from GitHub.
+If there's only one, it's standard to call it 'origin'. Url is where I'll
+link it.
+
+git remote -v: verbose. The output now will show the url to which we push and
+fetch data from. 
+
+git push remote local_branch_to_push: it pushes the commits from the remote 
+to GitHub. It takes two arguments: the name of the remote I want to send 
+changes to and the branch I'd like to push. On GitHub, the branch will also
+be called "local_branch_to_push"
