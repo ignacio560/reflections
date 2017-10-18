@@ -10,7 +10,26 @@ their local files.
 automatically stay up-to-date with your remote repository?
 
 Because I want to know what I'm pulling, and wouldn't like to have my files
-modified without me actually wanting that to happen.  
+modified without me actually wanting that to happen.
+
+3.- Describe the differences between forks, clones, and branches.
+When would you use one instead of another?
+
+Branches are a bunch of commits that are made inside of a repository to allow
+for testing changes to code or to create new features without altering some
+the core code of the project.
+
+Clones are hard copies of a repository (with all the Git metadata included),
+which can be made from a repository online (GitHub) or locally.
+
+Forks are clones from repositories which you don't have permission to modify,
+and are done exclusively on GitHub.
+
+You branch whenever you need it, clone a remote repository that you have
+permission to modify, so that you'll be able to push changes in the future, and
+you fork a repository that you want to modify but that you don't have permission
+or don't want to alter the original, so that later you can clone it to your
+local machine. and pull and push from it and the fork you created.
 
 
 _____________________
@@ -33,3 +52,21 @@ be called "local_branch_to_push"
 
 git pull remote branch_to_pull: allows for local updates from the remote GitHub
 repository.
+
+Forking is a solution to cloning someone else's repository directly on GitHub,
+without having to clone their repository to your local machine, then setting
+it as a remote for a new GitHub repo and then having others cloning your repo.
+It also gives recognition to the original owner of the repo about their work.
+Once we've forked, we can pull to our own machine and make changes. Forking
+is a clone that GitHub makes for us on their own machines. But GitHub keeps
+track of the people that forked a given repository, linking back to the
+original, and it's easier to suggests changes back to the original repo.
+
+Once we fork on GitHub, we just clone that repo on our local machines. Those
+clones don't really have to know about the original repo anymore.
+
+When you clone a repo from GitHub (such as a forked one), git automatically
+creates a remote for you. You can check that using git remote -v, and it's
+usually called origin.
+
+In settings on GitHub, you can add collaborators so that they can pull.
