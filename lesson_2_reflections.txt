@@ -1,0 +1,23 @@
+1.- What happens when you initialize a repository?
+Why do you need to do it?
+
+The metadata for the repository is created, but no commits are made yet.
+
+2.- How is the staging area different from the working directory
+and the repository? What value do you think it offers?
+
+It's an intermediate step between the two, allowing you to make sure how
+many files you want to commit before doing so.
+
+
+
+
+
+Materia:
+git init: initializes a new repository.
+git status: it shows which files have changed since the last commit.
+git add: adds files to the staging area.
+git commit
+git commit -m "Commit message"
+
+Etapas: working directory, staging area, repository.
