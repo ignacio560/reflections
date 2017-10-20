@@ -39,6 +39,15 @@ the last known state. Then we can fetch and see what changes were made by others
 while we where offline, without having to alter the code we've been developing
 on that time.
 
+5.- How would you collaborate without using Git or GitHub? What would be
+easier, and what would be harder?
+
+Without Git and GitHub, it might be easier to collaborate with other people
+that don't actually know how those version control ways work. It takes some time
+to learn, so if someone from the team isn't comfortable with it, it can be slow
+at the beginning. However, I think that once everyone is on board with it,
+it is much easier to collaborate with it than without it. 
+
 
 
 _____________________
