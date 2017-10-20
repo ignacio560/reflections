@@ -46,7 +46,15 @@ Without Git and GitHub, it might be easier to collaborate with other people
 that don't actually know how those version control ways work. It takes some time
 to learn, so if someone from the team isn't comfortable with it, it can be slow
 at the beginning. However, I think that once everyone is on board with it,
-it is much easier to collaborate with it than without it. 
+it is much easier to collaborate with it than without it.
+
+6.- When would you want to make changes in a separate branch rather than
+directly in master? What benefits does each approach have?
+
+When you want to try a new feature, and when you want to make a pull request
+later on GitHub. It's beneficial because you don't mess with master. On the
+other hand, it does take more work, which is a potential benefit of just working
+on master, because once you get it working, it's there.
 
 
 
@@ -172,3 +180,61 @@ they are reachable by each others. If there's no reason to add new commits, we
 just update the label. This is a fast-forward merge: we're taking the label
 from the history of a branch, somewhere in it's ancestry, and moving it forward
 to the tip of the branch.
+
+A pull request is done when you push a file into a different branch to the
+remote repository.
+
+How to get feedback on a project before updating the master branch:
+You work on it on a branch locally, and then push the branch to the
+fork. It's on a branch and everyone else can see it, and if they find
+a problem, you didn't break master.
+
+Next, we'll use a feature of GitHub called pull request, that makes it
+easier for other people to see specifically what we changed, and make
+comments.
+
+When we're both ready, we'll merge that branch into the master branch.
+
+In actuality, this looks more like a push request, so why is it called
+pull request? She's requesting that the owner PULLS her branch into the
+master branch. So another good name would be a merge request.
+
+Once pushed into GitHub, then owners of the repository can review the branch
+with the changes and make commentaries on them. If everything's ok, and there
+are no conflicts, GitHub will allow a pull request to be automatically merged.
+Otherwise, we would ask the person that created the pull request to merge the
+file on their local computer and upload the merged file to the branch, so we
+could see how they resolved the conflicts. Then we know nothing'll go wrong
+with master when you finally merge.
+
+So, in practice, when editing a file on our local machine, the only thing
+that gets changed is the local working directory. Then we use the git add
+for that file, changing the local staging area, and then when we commit we
+change the master branch (if that's what's checked.). If we perform a git
+pull origin master request, we'll actually edit the master branch, the staging
+area and the local working directory. On the other side, if we use a git push
+origin master, the only thing that'll be changed is the GitHub master branch.
+Same thing with a merge alt pull request, it'll change the GitHub master branch
+only if accepted.
+
+What happens when we have conflicting changes in pull requests?
+
+Merging in GitHub doesn't do a fast-forward merge, it creates a new commit,
+even if no extra information is given. Now that we've merged in GitHub, we
+delete the pull request branch, which is very easy on GitHub, and it's pretty
+common to do that. But now if we had two branches that dealt with the same
+lines, it won't be possible on GitHub, and we'll have to pull the changes from
+GitHub back to the computer. Be careful, because since we're doing this
+in collaboration with others, it's mostly accepted that changes must be done
+through pull requests. We want to see the changes before we edit master.
+
+So we have to pull the master from GitHub, and then merge the local master
+into the local BRANCH, then upload the local BRANCH to the remote BRANCH,
+and then pull request THAT (the remote branch that's updated with the local
+master) to the remote master on GitHub, so we can look it up before pulling it
+back into remote's master.
+
+So the first step is to pull the changes made on GitHub to our local master.
+Then we'll change branches to the conflicting, and then git merge master
+conflicting-branch. We'll get a conflict as expected, and have to resolve it
+in the text editor.
